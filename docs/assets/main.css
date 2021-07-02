@@ -508,6 +508,25 @@ body {
     border-bottom-style: dotted;
 }
 
+.token.reference {
+  border-bottom: none !important;
+}
+
+.token.constant {
+  color: #6c5ce7;
+  border-bottom: none !important;
+  font-weight: 600;
+}
+
+.token.constant::before {
+  content: "$";
+}
+
+.token.operator {
+  border-bottom: none !important;
+  color: #0984e3;
+}
+
 .token.mnemonic {
   border-bottom-color: sienna !important;
 }

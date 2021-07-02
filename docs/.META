@@ -1,6 +1,6 @@
 NOP         00  4
 LD BC, nn   01  12
-
+LD (BC), A  02  8
 INC BC      03  8
 INC B       04  4
 DEC B       05  4
