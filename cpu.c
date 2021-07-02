@@ -67,6 +67,7 @@ void executeCode(uint8_t code);
 */
 
 void initCPU(CPU *CPU);
+void dumpCPU();
 int hasFlag(int flag, CPU *CPU);
 
 
@@ -79,6 +80,19 @@ void initCPU(CPU *CPU) {
     CPU->pc = 0x0000;
 }
 
+void dumpCPU() {
+    printf("--- CPU ---\n");
+    printf("\t A -> 0x%02hhX\n", cpu.a);
+    printf("\t B -> 0x%02hhX\n", cpu.b);
+    printf("\t C -> 0x%02hhX\n", cpu.c);
+    printf("\t D -> 0x%02hhX\n", cpu.d);
+    printf("\t E -> 0x%02hhX\n", cpu.e);
+    printf("\t F -> 0x%02hhX\n", cpu.f);
+    printf("\t H -> 0x%02hhX\n", cpu.h);
+    printf("\t L -> 0x%02hhX\n", cpu.l);
+    printf("\n");
+}
+
 // void LD_NN_N(uint8_t *reg1, uint8_t *reg2);
 
 // // LD nn, n
@@ -87,13 +101,18 @@ void initCPU(CPU *CPU) {
 // }
 
 void executeCode(uint8_t code) {
+    if(code == 0x36) {
+
+    }
     if(code > 0x39 && code < 0x80) {
         uint8_t *regs[8] = {&(cpu.b), &(cpu.c), &(cpu.d), &(cpu.e), &(cpu.h), &(cpu.l), _hl_(), &(cpu.a)};
-        uint8_t *sourceRegister = regs[(code - 0x40) / 0x08];
-        uint8_t *targetRegister = regs[code % 0x08]; 
-        *targetRegister = (*sourceRegister);
+        uint8_t *targetRegister = regs[(code - 0x40) / 0x08];
+        uint8_t *sourceRegister = regs[(code - 0x40) % 0x08]; 
         printf("Target, %d\n", (code - 0x40) / 0x08);
-        printf("Source, %d\n", code % 0x08);
+        printf("Target Val, %d\n", *targetRegister);
+        printf("Source, %d\n", (code - 0x40) % 0x08);
+        printf("Source Val, %d\n\n", *sourceRegister);
+        *targetRegister = *sourceRegister;
     }
 }
 
@@ -101,9 +120,8 @@ void executeCode(uint8_t code) {
 int main () {
     initCPU(&cpu);
     write(&memory, 0xC000, 0x70);
-    cpu.h = 0x00;
-    cpu.l = 0xC0;
-    printf("Value of (HL), %d\n", *_hl_());
-    executeCode(0x46);
-    printf("Value in B, %d\n", cpu.b);
+    cpu.d = 0xC1;
+    dumpCPU();
+    executeCode(0x5A);
+    dumpCPU();
 }
