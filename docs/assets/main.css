@@ -250,17 +250,11 @@ body {
     /* border-bottom: 0; */
     overflow-y: scroll;
     height: calc(100vh - 6px);
-    -ms-overflow-style: none; 
-    scrollbar-width: none;
     -webkit-box-shadow: -4px 3px 25px 0px rgb(0, 0, 0, 6%);
     -moz-box-shadow: -4px 3px 25px 0px rgb(0, 0, 0, 6%);
     box-shadow: -4px 3px 25px 0px rgb(0, 0, 0, 6%)
   }
   
-  .container::-webkit-scrollbar {
-    display: none;
-  }
-
   nav.header {
     top: 0;
     z-index: 1;
