@@ -9485,5 +9485,6 @@ window.instructions = [
     SRL: `Performs a <a href="https://en.wikipedia.org/wiki/Bitwise_operation#Logical_shift">Right Logical Shift</a>. The old LSB goes into the Carry.`,
     BIT: `Tests to see if a specified bit is a one. If not, the Zero flag <span class="wiki token condition">Z</span> is set.`,
     RES: `Reset a specified bit in a value. (Set the bit to 0).`,
-    SET: `Set a specified bit in a value. (Set the bit to 1).`
+    SET: `Set a specified bit in a value. (Set the bit to 1).`,
+    PUSH: `Pushes the program counter's address onto the stack.`
  };
