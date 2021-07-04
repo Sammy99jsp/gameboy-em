@@ -484,7 +484,7 @@ body {
     display: block;
 }
 
-.instruction .details .title .token {
+.title .token {
     display: inline;
     cursor: pointer;
 }
@@ -497,7 +497,7 @@ body {
     font-weight: 600;
 }
 
-.instruction .details .title .token {
+.title .token {
     border-bottom: 4px solid var(--feature);
     border-bottom-style: dotted;
 }
@@ -521,8 +521,35 @@ body {
   color: #0984e3;
 }
 
+.token.condition {
+  color: #e056fd;
+  border-color: #e056fd;
+}
+
 .token.mnemonic {
   border-bottom-color: sienna !important;
+}
+
+.popup .token {
+  border-bottom: none !important;
+}
+
+.popup {
+  position: absolute;
+  color: var(--text-0) !important;
+  z-index: 100;
+  padding: 0.25em;
+  border: 1px solid var(--item-divider);
+  border-radius: 0.25em;
+  background-color: var(--color-2);
+  font-family: "Open Sans";
+  font-weight: normal;
+  font-size: initial;
+  width: 70%;
+  -webkit-box-shadow: -4px 3px 25px 0px rgb(0, 0, 0, 6%);
+    -moz-box-shadow: -4px 3px 25px 0px rgb(0, 0, 0, 6%);
+    box-shadow: -4px 3px 25px 0px rgb(0, 0, 0, 6%)
+  
 }
 
 @media screen and (max-width: 850px) { 

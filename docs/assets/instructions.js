@@ -3954,7 +3954,7 @@ window.instructions = [
              "value":"RST"
           },
           {
-             "type":"condition",
+             "type":"constant",
              "value":"08"
           }
        ],
@@ -9445,6 +9445,45 @@ window.instructions = [
         ],
         "cycles":8,
         "flags":"----"
-    }
-    
- ]
+    }  
+ ];
+
+ const MNEMONICS = {
+    NOP: "No operation &mdash; Does nothing for 4 cycles.",
+    LD: "Loads values into registers and RAM.",
+    INC: "Adds one to a register or register pair.",
+    ADD: "Adds values together, stores result in first argument.",
+    DEC: "Decrements the value of a register, or RAM address.",
+    STOP: "Halt CPU & LCD until a button is pressed.",
+    JR: "Jumps program execution to a new address (determined by certain conditions).",
+    DA: `Converts a value into its <a href="https://en.wikipedia.org/wiki/Binary-coded_decimal">Binary Coded Decimal (BCD)</a> form."`,
+    CPL: `Flips all the bits of a value and sets it as the new value.`,
+    SCF: `Sets the carry flag. <span class="wiki token condition">C</span> = 1.`,
+    CCF: `Inverts the value of the carry flag. <span class="wiki token condition">C</span> = !<span class="wiki token condition">C</span>.`,
+    HALT: `Power down the CPU until an interrupt occurs. Mostly used to reduce energy consumption.`,
+    SUB: `Takes the difference (subtracts) of two values.`,
+    ADC: "Adds two values, along with the carry bit.",
+    SBC: "Subtracts two values, along with the carry bit.",
+    AND: `Takes the <a href="https://en.wikipedia.org/wiki/Bitwise_operation#AND">Bitwise AND</a> of two values.`,
+    XOR: `Takes the <a href="https://en.wikipedia.org/wiki/Bitwise_operation#XOR">Bitwise XOR</a> of two values.`,
+    OR: `<a href="https://en.wikipedia.org/wiki/Bitwise_operation#OR">Bitwise OR</a> of two values.`,
+    CP: `Similar to <span class="token wiki mnemonic">SUB</span>, but the result is thrown away — Only the flags are set.`,
+    RET: `Pops two bytes off the stack and jumps to that address — used to return from a subroutine.`,
+    POP: `Pops two bytes off the stack into a register pair.`,
+    CALL: `Jumps execution to an address, whilst putting the current execution address into the stack.`,
+    RST: `Pushes the current address onto the stack. Jumps to a address $0000 + n.`,
+    RETI: `Same as <span class="token wiki mnemonic">RET</span>, but enables interrupts after.`,
+    DI: `Disables interrupts.`,
+    EI: `Enables interrupts.`,
+    RLC:  `Rotates bits left through the carry — See <a href="https://en.wikipedia.org/wiki/Bitwise_operation#Rotate_through_carry">Wikipedia</a>.`,
+    RRC:  `Rotates bits right through the carry — See <a href="https://en.wikipedia.org/wiki/Bitwise_operation#Rotate_through_carry">Wikipedia</a>.`,
+    RL: `Rotates bits left — See <a href="https://en.wikipedia.org/wiki/Bitwise_operation#Rotate">Wikipedia</a>.`,
+    RR:  `Rotates bits right — See <a href="https://en.wikipedia.org/wiki/Bitwise_operation#Rotate">Wikipedia</a>.`,
+    SLA: `Performs an <a href="https://en.wikipedia.org/wiki/Bitwise_operation#Arithmetic_shift">Left Aritmetic Shift</a>.`,
+    SRA: `Performs an <a href="https://en.wikipedia.org/wiki/Bitwise_operation#Arithmetic_shift">Right Aritmetic Shift</a>.`,
+    SWAP: `Swaps the upper and lower nibbles of a value.`,
+    SRL: `Performs a <a href="https://en.wikipedia.org/wiki/Bitwise_operation#Logical_shift">Right Logical Shift</a>. The old LSB goes into the Carry.`,
+    BIT: `Tests to see if a specified bit is a one. If not, the Zero flag <span class="wiki token condition">Z</span> is set.`,
+    RES: `Reset a specified bit in a value. (Set the bit to 0).`,
+    SET: `Set a specified bit in a value. (Set the bit to 1).`
+ };
