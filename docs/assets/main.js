@@ -49,6 +49,14 @@ $(document).on('mouseenter', '.flag', function() {
     }
 })
 
+$(document).on('click', 'a', function(e) {
+    let win = window.open($(this).attr('href'), '_blank');
+    if(win) {
+        win.focus();
+        e.preventDefault();
+    }
+})
+
 
 function makePopup({content}) {
    return (`<div class="popup">${content}</div>`)
