@@ -3,7 +3,12 @@ $('.container').on("scroll", function(e){
 });
 let isInPopup = false;
 
-
+function filteringOut({mnemonic}) {
+    if(mnemonic) {
+        let notQualified = window.instructions.filter(op => op.syntax[0].value != mnemonic).map(op => op.opcode);
+        return [...$('.card')].filter(card => notQualified.indexOf($(card).data('code')) > -1);
+    }
+}
 
 $(document).on('mouseenter', '.mnemonic.token', function() {
     let el = $(this);
@@ -64,7 +69,7 @@ function makePopup({content}) {
 
 function htmlForInstruction({opcode, syntax, flags, cycles}) {
     const [Z, N, H, C] = ([...(flags || [])]).map(flagParse);
-    return `<div class="card">
+    return `<div class="card" data-code="${opcode}">
     <div class="instruction">
         <div class="code">
             <div class="center-block">
