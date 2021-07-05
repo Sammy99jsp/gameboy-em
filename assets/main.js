@@ -154,7 +154,7 @@ function flagParse(flag) {
 window.instructions.sort(function(a, b) {
     const [A, B] = [a.opcode.split(" ").map(e => parseInt(e, 16)), b.opcode.split(" ").map(e => parseInt(e, 16))];
     return A[0] - B[0] === 0 ? A[1] - B[1] : A[0] - B[0];
-}).forEach(opcode => {
+}).filter(e => finished.indexOf(e.opcode) === -1 ).forEach(opcode => {
     try {
         $('#opcodes').append(htmlForInstruction(opcode));
         
