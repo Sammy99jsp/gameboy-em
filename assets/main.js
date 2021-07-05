@@ -21,9 +21,8 @@ $(document).on('click', '.card', function(e) {
     $(this).fadeOut('fast', function() {
         $(this).remove();
         finished.push(code);
+        localStorage.setItem("finished", JSON.stringify(finished));
     })
-    localStorage.setItem("finished", JSON.stringify(finished));
-
 })
 
 $(document).on('mouseenter', '.mnemonic.token', function() {
