@@ -3,12 +3,28 @@ $('.container').on("scroll", function(e){
 });
 let isInPopup = false;
 
-function filteringOut({mnemonic}) {
-    if(mnemonic) {
-        let notQualified = window.instructions.filter(op => op.syntax[0].value != mnemonic).map(op => op.opcode);
-        return [...$('.card')].filter(card => notQualified.indexOf($(card).data('code')) > -1);
+let finished = [];
+
+if(!localStorage.getItem("finished")) {
+    localStorage.setItem("finished", JSON.stringify(finished));
+} else {
+    try {
+        finished = JSON.stringify(localStorage.getItem("finished"));
+    } catch(e) {
+        localStorage.setItem("finished", JSON.stringify(finished));
     }
 }
+
+$(document).on('click', '.card', function(e) {
+    if(!e.ctrlKey) return;
+    let code = $(this).data("code");
+    $(this).fadeOut('fast', function() {
+        $(this).remove();
+        finished.push(code);
+    })
+
+
+})
 
 $(document).on('mouseenter', '.mnemonic.token', function() {
     let el = $(this);
@@ -101,7 +117,7 @@ function htmlForInstruction({opcode, syntax, flags, cycles}) {
 
 function processToken(token) {
     if(token.type === "reference") {
-        return `<div class="${token.type} token">${(token.demarcator || ["("])[0]}${token.value.map(processToken).join("")}${(token.demarcator || [, ")"])[1]}</div>`
+        return `<div class="${token.type} token">${(token.demarcator || "(")[0]}${token.value.map(processToken).join("")}${(token.demarcator || " )")[1]}</div>`
     }
     return `<div class="${token.type} token">${token.value}</div>`;
 }
