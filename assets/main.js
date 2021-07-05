@@ -9,7 +9,7 @@ if(!localStorage.getItem("finished")) {
     localStorage.setItem("finished", JSON.stringify(finished));
 } else {
     try {
-        finished = JSON.stringify(localStorage.getItem("finished"));
+        finished = JSON.parse(localStorage.getItem("finished"));
     } catch(e) {
         localStorage.setItem("finished", JSON.stringify(finished));
     }
