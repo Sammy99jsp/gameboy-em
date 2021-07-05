@@ -4422,7 +4422,7 @@ window.instructions = [
        "syntax":[
           {
              "type":"mnemonic",
-             "value":"LDH"
+             "value":"LD"
           },
           {
              "type":"register",
