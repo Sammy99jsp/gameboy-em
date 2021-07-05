@@ -14,7 +14,6 @@ typedef signed char r;
 
 CPU cpu;
 
-void NOP();
 
 void LD_n_n(n *dest, n value);
 void LD_nn_nn(nn *dest, nn value);
@@ -82,29 +81,6 @@ void RES(n bit, n *dest);
 
 void SET(n bit, n *dest);
 
-// Bitwise stuff.
-
-int testBit(n bits, n test);
-n setBit(n bits, n toSet);
-n resetBit(n bits, n toReset);
-n toggleBit(n bits, n toToggle);
-
-
-int testBit(n bits, n test) {
-    return (bits & test) == test;
-}
-
-n setBit(n bits, n toSet) {
-    return bits | toSet; 
-}
-
-n resetBit(n bits, n toReset) {
-    return bits & (~toReset);
-}
-
-n toggleBit(n bits, n toToggle) {
-    return bits ^ toToggle;
-}
 
 // Shortenings
 void setZFlag();
@@ -154,9 +130,7 @@ int hasHalfCarry(n a, n b) {
 
 // Instruction definitions
 
-void NOP() {
-    return;
-}
+
 
 void LD_n_n(n *dest, n source) {
     *dest = source;

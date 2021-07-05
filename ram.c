@@ -20,7 +20,7 @@ typedef unsigned char n;
 // 0xFF80 - 0xFFFE — High RAM
 // 0xFFFF - Interrupts Enable Register 
 
-typedef struct {
+typedef struct Memory {
     n ROM_BANK_00[0x4000];
     n ROM_BANK_NN[0x4000];
     n VRAM[0x2000];
