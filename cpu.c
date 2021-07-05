@@ -1,60 +1,64 @@
 #include <stdio.h>
 #include "./ram.c"
+#include "./opcodes.c"
 
-typedef unsigned short uint16_t;
-typedef unsigned char uint8_t;
+typedef unsigned short nn;
+typedef unsigned char n;
+
 
 #define TRUE 1
 #define FALSE 0
 
 #define FLAG_Z 0x80
-#define FLAG_S 0x40
+#define FLAG_N 0x40
 #define FLAG_H 0x20
 #define FLAG_C 0x10
 
-typedef struct {
+struct CPU {
     union {
-        uint16_t af;
+        nn af;
         struct {
-            uint8_t a;
-            uint8_t f;
+            n a;
+            n f;
         };
     };
     union {
-        uint16_t bc;
+        nn bc;
         struct {
-            uint8_t b;
-            uint8_t c;
+            n b;
+            n c;
         };
     };
     union {
-        uint16_t de;
+        nn de;
         struct {
-            uint8_t d;
-            uint8_t e;
+            n d;
+            n e;
         };
     };
     union {
-        uint16_t hl;
+        nn hl;
         struct {
-            uint8_t h;
-            uint8_t l;
+            n h;
+            n l;
         };
     };
 
-    uint16_t sp;
-    uint16_t pc;
-} CPU;
+    nn sp;
+    nn pc;
+};
 
-CPU cpu;
-Memory memory;
+typedef struct CPU CPU;
+extern Memory memory;
+extern CPU cpu;
 
-uint8_t *_hl_();
-uint8_t *_hl_() {
+
+n *_hl_();
+n *_hl_() {
     return ramAddress(&memory, cpu.hl, 0);
 }
 
-void executeCode(uint8_t code);
+void executeCode(n code);
 
 // Flag byte is implmented as such: 
 /*
@@ -68,7 +72,6 @@ void executeCode(uint8_t code);
 
 void initCPU(CPU *CPU);
 void dumpCPU();
-int hasFlag(int flag, CPU *CPU);
 
 
 void initCPU(CPU *CPU) {
@@ -93,6 +96,7 @@ void dumpCPU() {
     printf("\n");
 }
 
+
 // void LD_NN_N(uint8_t *reg1, uint8_t *reg2);
 
 // // LD nn, n
@@ -100,14 +104,14 @@ void dumpCPU() {
 //     *reg1 = val;
 // }
 
-void executeCode(uint8_t code) {
+void executeCode(n code) {
     if(code == 0x36) {
 
     }
     if(code > 0x39 && code < 0x80) {
-        uint8_t *regs[8] = {&(cpu.b), &(cpu.c), &(cpu.d), &(cpu.e), &(cpu.h), &(cpu.l), _hl_(), &(cpu.a)};
-        uint8_t *targetRegister = regs[(code - 0x40) / 0x08];
-        uint8_t *sourceRegister = regs[(code - 0x40) % 0x08]; 
+        n *regs[8] = {&(cpu.b), &(cpu.c), &(cpu.d), &(cpu.e), &(cpu.h), &(cpu.l), _hl_(), &(cpu.a)};
+        n *targetRegister = regs[(code - 0x40) / 0x08];
+        n *sourceRegister = regs[(code - 0x40) % 0x08]; 
         printf("Target, %d\n", (code - 0x40) / 0x08);
         printf("Target Val, %d\n", *targetRegister);
         printf("Source, %d\n", (code - 0x40) % 0x08);
@@ -122,6 +126,7 @@ int main () {
     write(&memory, 0xC000, 0x70);
     cpu.d = 0xC1;
     dumpCPU();
-    executeCode(0x5A);
+    //executeCode(0x5A);
+    ADD_n_n(&(cpu.d), 0x03);
     dumpCPU();
 }

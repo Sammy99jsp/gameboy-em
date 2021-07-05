@@ -1,7 +1,8 @@
+#pragma once
 #include <stdio.h>
 
-typedef unsigned short uint16_t;
-typedef unsigned char uint8_t;
+typedef unsigned short nn;
+typedef unsigned char n;
 
 /* GameBoy RAM */
 
@@ -20,23 +21,23 @@ typedef unsigned char uint8_t;
 // 0xFFFF - Interrupts Enable Register 
 
 typedef struct {
-    uint8_t ROM_BANK_00[0x4000];
-    uint8_t ROM_BANK_NN[0x4000];
-    uint8_t VRAM[0x2000];
-    uint8_t EXT_RAM[0x2000];
-    uint8_t WRAM_00[0x1000];
-    uint8_t WRAM_NN[0x1000];
-    uint8_t OAM[0x00A0];
-    uint8_t IO[0x0080];
-    uint8_t HRAM[0x007f];
-    uint8_t IER[0x0001];
+    n ROM_BANK_00[0x4000];
+    n ROM_BANK_NN[0x4000];
+    n VRAM[0x2000];
+    n EXT_RAM[0x2000];
+    n WRAM_00[0x1000];
+    n WRAM_NN[0x1000];
+    n OAM[0x00A0];
+    n IO[0x0080];
+    n HRAM[0x007f];
+    n IER[0x0001];
 } Memory;
 
-uint8_t read(Memory *MEM, uint16_t addr);
-void write(Memory *MEM, uint16_t addr, uint8_t value);
-uint8_t *ramAddress(Memory *MEM, uint16_t addr, int mode);
+n read(Memory *MEM, nn addr);
+void write(Memory *MEM, nn addr, n value);
+n *ramAddress(Memory *MEM, nn addr, int mode);
 
-uint8_t *ramAddress(Memory *MEM, uint16_t addr, int mode) {
+n *ramAddress(Memory *MEM, nn addr, int mode) {
     if(addr < 0x4000) { return &(MEM->ROM_BANK_00[addr]); }
     if(addr < 0x8000) { return &(MEM->ROM_BANK_NN[addr - 0x4000]); }
     if(addr < 0xA000) { return &(MEM->VRAM[addr - 0x8000]); }
@@ -56,12 +57,12 @@ uint8_t *ramAddress(Memory *MEM, uint16_t addr, int mode) {
 
 // Reading from Memory
 
-uint8_t read(Memory *MEM, uint16_t addr) {
+n read(Memory *MEM, nn addr) {
     return *(ramAddress(MEM, addr, 0));
 }
 
-void write(Memory *MEM, uint16_t addr, uint8_t value) {
-    uint8_t *toChange = ramAddress(MEM, addr, 1);
+void write(Memory *MEM, nn addr, n value) {
+    n *toChange = ramAddress(MEM, addr, 1);
     if(toChange == NULL) {
         return;
     }
