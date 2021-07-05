@@ -22,7 +22,7 @@ $(document).on('click', '.card', function(e) {
         $(this).remove();
         finished.push(code);
     })
-
+    localStorage.setItem("finished", JSON.stringify(finished));
 
 })
 
