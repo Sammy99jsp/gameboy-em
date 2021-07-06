@@ -1,6 +1,11 @@
 #include "./__includes__.c"
 
 /**
+ * @MNEMONIC XOR 
+ * 
+ * @FLAGS
+ *  Z 0 0 0
+ * 
  * @OPCODES 
  *  A8 → A, B
  *  A9 → A, C
@@ -16,12 +21,9 @@
 
 void XOR(CPU *cpu, n *param1, n param2) {
     *param1 = (*param1) ^ param2;
-
-    resetFlags(cpu, C + H + N);
     
-    if(*param1 == 0) {
-        setFlags(cpu, Z);
-    } else {
-        resetFlags(cpu, Z);
-    }
+    cpu->f.C = 0;
+    cpu->f.H = 0;
+    cpu->f.N = 0;
+    cpu->f.Z = *param1 == 0;
 }

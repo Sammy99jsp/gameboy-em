@@ -1,6 +1,11 @@
 #include "./__includes__.c"
 
 /**
+ * @MNEMONIC AND
+ * 
+ * @FLAGS
+ *  Z 0 1 0
+ * 
  * @OPCODES 
  *  A0 → A, B
  *  A1 → A, C
@@ -17,11 +22,8 @@
 void AND(CPU *cpu, n *param1, n param2) {
     *param1 = (*param1) & param2;
 
-    resetFlags(cpu, C + N);
-    setFlags(cpu, H);
-    if(*param1 == 0) {
-        setFlags(cpu, Z);
-    } else {
-        resetFlags(cpu, Z);
-    }
+    cpu->f.Z = *param1 == 0;
+    cpu->f.N = 0;
+    cpu->f.H = 1;
+    cpu->f.C = 0;
 }

@@ -4,9 +4,6 @@
 typedef unsigned short nn;
 typedef unsigned char n;
 
-#define TRUE 1
-#define FALSE 0
-
 #define FLAG_Z 0x80
 #define FLAG_N 0x40
 #define FLAG_H 0x20
@@ -17,7 +14,13 @@ typedef struct {
         nn af;
         struct {
             n a;
-            n f;
+            union {
+                // The following works with my compiler, but your milage may vary ...
+                struct {
+                    unsigned char : 4, C:1, H:1, N:1, Z:1;
+                };
+                n value;
+            } f;
         };
     };
     union {
@@ -44,6 +47,8 @@ typedef struct {
 
     nn sp;
     nn pc;
+    // Are interrupts enabled?
+    n hasInterupts : 1;
 } CPU;
 
 /*
