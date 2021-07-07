@@ -9476,7 +9476,7 @@ window.instructions = [
     DI: `Disables interrupts.`,
     EI: `Enables interrupts.`,
     RLC:  `Rotates bits left. Old bit 7 goes to carry — See <a href="https://en.wikipedia.org/wiki/Bitwise_operation#Rotate_through_carry">Wikipedia</a>.`,
-    RRC:  `Rotates bits right. Old bit 7 goes to carry — See <a href="https://en.wikipedia.org/wiki/Bitwise_operation#Rotate_through_carry">Wikipedia</a>.`,
+    RRC:  `Rotates bits right. Old bit 0 goes to carry — See <a href="https://en.wikipedia.org/wiki/Bitwise_operation#Rotate_through_carry">Wikipedia</a>.`,
     RL: `Rotates bits left through the carry — See <a href="https://en.wikipedia.org/wiki/Bitwise_operation#Rotate_through_carry">Wikipedia</a>.`,
     RR:  `Rotates bits right through the carry — See <a href="https://en.wikipedia.org/wiki/Bitwise_operation#Rotate_through_carry">Wikipedia</a>.`,
     SLA: `Performs an <a href="https://en.wikipedia.org/wiki/Bitwise_operation#Arithmetic_shift">Left Aritmetic Shift</a>.`,
