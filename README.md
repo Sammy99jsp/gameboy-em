@@ -18,7 +18,7 @@ In the `docs` branch, I've quickly made a list of all the opcodes and their effe
 You can look at it [here](https://sammy99jsp.github.io/gameboy-em/). 
 
 ## Types
-To use roughly the same notation as the Game Boy CPU Manual[^1] and Instruction Set Table[^2], I've defined the types below
+To use roughly the same notation as the Game Boy CPU Manual [^1] and Instruction Set Table [^2], I've defined the types below
 
 ```c
 typedef unsigned char n;
@@ -50,5 +50,5 @@ union {
 ```
 
 ## Resources
-[Game Boy CPU Manual](http://marc.rawer.de/Gameboy/Docs/GBCPUman.pdf)[^1] — This is probably the best guide on GameBoy architecture.
-[GameBoy Instruction Set Table](https://www.pastraiser.com/cpu/gameboy/gameboy_opcodes.html)[^2] — Used this as a source for the `docs` list.
+[^1] : [Game Boy CPU Manual](http://marc.rawer.de/Gameboy/Docs/GBCPUman.pdf) — This is probably the best guide on GameBoy architecture.
+[^2] : [GameBoy Instruction Set Table](https://www.pastraiser.com/cpu/gameboy/gameboy_opcodes.html) — Used this as a source for the `docs` list.
