@@ -28,8 +28,7 @@ typedef signed char r;
 
 ## CPU
 
-In this implementation, the CPU is a struct of unions - which allows for registers to be accessed in pairs and directly all at once.
-
+In this implementation, the CPU is a struct of unions - which allows for registers to be accessed in pairs and directly all at once:
 ```c
 union {
   nn BC;
@@ -40,8 +39,7 @@ union {
 }
 ```
 
-The F register is implemented as a union in of itself to allow for flags to be directly accessed, as well as the entire flag and in the AF register pair.
-
+The F register is implemented as a union to allow for flags to be directly accessed, and the entire F and AF registers.
 ```c
 union {
   struct {
