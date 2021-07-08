@@ -10,3 +10,27 @@ typedef unsigned char n;
 typedef unsigned short nn;
 
 typedef signed char r;
+
+n checkBit(n *number, n bit) {
+    return (*number >> bit) & 1U;
+}
+
+void setBit(n *number, n bit) {
+    *number |= 1U << bit;
+}
+
+void resetBit(n *number, n bit) {
+    *number &= ~(1U << bit);
+}
+
+n swapNibbles(n x) {
+    return ( (x & 0x0F) << 4 | (x & 0xF0) >> 4 );
+}
+
+n rotateLeft(n x) {
+    return (x << 1) | (x >> 7); 
+}
+
+n rotateRight(n x) {
+    return (x >> 1) | (x << 7);
+}
