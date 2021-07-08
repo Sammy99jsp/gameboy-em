@@ -15,7 +15,7 @@ typedef struct {
         struct {
             n a;
             union {
-                // The following works with my compiler, but your milage may vary ...
+                // The following works with my compiler, but your mileage may vary ...
                 struct {
                     unsigned char : 4, C:1, H:1, N:1, Z:1;
                 };
