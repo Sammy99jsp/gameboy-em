@@ -15,6 +15,7 @@
  *  CB 0D → L
  *  CB 0E → (HL)
  *  CB 0F → A
+ *  0F    → A
 */
 
 void RRC(CPU *cpu, n *param1) {
